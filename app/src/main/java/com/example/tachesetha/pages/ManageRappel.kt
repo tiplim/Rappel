@@ -3,6 +3,7 @@ package com.example.tachesetha.pages
 import android.content.Context
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -35,6 +36,7 @@ import com.example.tachesetha.database.RappelDAO
 import com.example.tachesetha.entities.Rappel
 import com.example.tachesetha.ui.theme.RedBestial
 import com.example.tachesetha.ui.theme.WhiteBestial
+import com.example.tachesetha.ui.theme.YellowBestial
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.util.Calendar
@@ -103,15 +105,22 @@ fun ManageRappel(rappelDao: RappelDAO, context: Context) {
                 }
             }
         }
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp) // optional padding from edges
+        ) {
+            FloatingActionButton(
+                containerColor = YellowBestial,
+                onClick = { showDialog = true },
+                modifier = Modifier.align(Alignment.BottomEnd)
+            ) {
+                Icon(imageVector = Icons.Default.Add, contentDescription = "Add")
+            }
+        }
     }
 
-    FloatingActionButton(
-        onClick = { showDialog = true },
-        modifier = Modifier
-            .padding(16.dp)
-    ) {
-        Icon(imageVector = Icons.Default.Add, contentDescription = "Add")
-    }
+
 
     if (showDialog) {
         RappelDialog(

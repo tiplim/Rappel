@@ -32,6 +32,18 @@ class MainActivity : ComponentActivity() {
         rappelDatabase = RappelDatabase.getDatabase(applicationContext)
         rappelDao = rappelDatabase.rappelDao()
 
+        //lifecycleScope.launch {
+        //    withContext(Dispatchers.IO) {
+        //        rappelDao.insert(
+        //            Rappel(
+        //               date = "12/03/2020 18:25",
+        //                description = "Description très chouette"
+        //            )
+        //        )
+        //        rappelDao.insert(Rappel(date = "12/04/2020 18:30", description = "Sport"))
+        //    }
+        //}
+
         setContent {
             TachesethaTheme {
                 Scaffold(
@@ -44,9 +56,11 @@ class MainActivity : ComponentActivity() {
                         )
                     },
                 ) { innerPadding ->
-                    Column(modifier = Modifier
-                        .fillMaxSize()
-                        .padding(innerPadding)) {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(innerPadding)
+                    ) {
                         ManageRappel(rappelDao, applicationContext)
                     }
                 }
